@@ -94,7 +94,7 @@ class Start:
                 beautiful_soup_client = BeautifulSoup(email_request.encode("utf-8"), "html.parser")
                 # Search for email found -> dict otherwise found -> False
                 message_body = beautiful_soup_client.find("div", {"class": "e7m mess_bodiyy"}).text
-                print(message_body)
+                return message_body
 
         else:
             raise TypeError("Please provide a link to your email")
