@@ -2,7 +2,9 @@ import requests, os, random
 from bs4 import BeautifulSoup
 from retrying import retry
 
-valid_domain_types = ["com", "net", "xyz", "org", "info", "me"]
+with open("domains_list.json", "r") as domains_list:
+    domains_list = json.load(domains_list)
+domains_list = domains_list['domains']
 
 
 def requestErrorHandler(exception):
