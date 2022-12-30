@@ -19,7 +19,7 @@
 
 CatchClient allows you to have `unlimited emails` under thousands of `different domains`. With an easy to use python library, you can easily utilize CatchClient in any of your projects seemlessly.
 
-## Installing Requests and Supported Versions
+## Installing the CatchClient [latest version]
 
 
 ```console
