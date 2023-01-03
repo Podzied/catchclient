@@ -9,7 +9,6 @@
 >>> # Get the inbox of an email
 >>> # Includes status, amount, email link, email time, email sender
 >>> inbox = catchclient.getinbox("email1@"+domain)
->>> 
 
 >>> # Get email content
 >>> if inbox['status'] == True:
