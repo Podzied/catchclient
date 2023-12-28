@@ -1,5 +1,5 @@
 
-#CatchClient*** A pathway to unlimited emails and a dream.
+# CatchClient A pathway to unlimited emails and a dream.
 
 ```python
 >>> import catchclient
