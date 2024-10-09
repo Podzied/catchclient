@@ -28,20 +28,31 @@ def getinbox(email=None):
     if email_table:
         # Locate each email entry within email-table
         email_entries = email_table.find_all("a", class_="list-group-item")
-        
+        if not email_entries:
+            # Handle a single email case (non-link, direct div structure)
+            email_entries = email_table.find_all("div", class_="list-group-item")
+
         for entry in email_entries:
             # Extract sender, subject, and timestamp
-            sender = entry.find("div", class_="from_div_45g45gg").get_text(strip=True) if entry.find("div", class_="from_div_45g45gg") else "Unknown"
-            subject = entry.find("div", class_="subj_div_45g45gg").get_text(strip=True) if entry.find("div", class_="subj_div_45g45gg") else "(No Subject)"
-            timestamp = entry.find("div", class_="time_div_45g45gg").get_text(strip=True) if entry.find("div", class_="time_div_45g45gg") else "Unknown"
+            sender = entry.find("div", class_="from_div_45g45gg").get_text(strip=True) if entry.find("div", class_="from_div_45g45gg") else None
+            subject = entry.find("div", class_="subj_div_45g45gg").get_text(strip=True) if entry.find("div", class_="subj_div_45g45gg") else None
+            timestamp = entry.find("div", class_="time_div_45g45gg").get_text(strip=True) if entry.find("div", class_="time_div_45g45gg") else None
             link = entry.get("href", "")
 
-            emails.append({
-                "link": f"https://emailfake.com{link}",
-                "sender": sender,
-                "subject": subject,
-                "timestamp": timestamp
-            })
+            if not all(field is None for field in [sender, subject, timestamp, link]):
+
+                if link == None: link = email
+
+                emails.append(
+                {
+                    "link": f"https://emailfake.com{link}",
+                    "sender": sender,
+                    "subject": subject,
+                    "timestamp": timestamp
+                }
+            )
+                
+            
     
     return {"status": "success" if emails else "No emails found", "emails": emails}
 
